@@ -1,0 +1,47 @@
+#north {
+	height: 50px;
+	padding: 10px;
+	font-family: 微软雅黑;
+	font-size: 30px;
+	background: #B3DFDA;
+}
+
+#south {
+	height: 40px;
+	padding-top: 20px;
+	text-align: center;
+	font-family: 微软雅黑;
+	font-size: 12px;
+	background: #A9FACD;
+}
+
+#west {
+	width: 50%;
+	padding-top: 50px;
+	text-align: center;
+}
+
+#center {
+	width: 50%;
+	padding-top: 200px;
+	padding-left: 50px text-align: center;
+}
+
+#loginImg {
+	width: 650px;
+	hight: 650px;
+}
+
+#loginTable {
+	border: 1px;
+}
+
+#msg {
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+#info {
+	font-size: 10px;
+	color: #FF0000;
+}

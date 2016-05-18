@@ -1,0 +1,37 @@
+# Server settings
+server:
+    port:8080
+    address:localhost
+
+# DATASOURCE
+jdbc:
+    dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+    url: jdbc:mysql://localhost:3306/btms?useUnicode=true&amp;charaterEncoding=utf-8
+    databaseName: btms
+    serverName: 127.0.0.1
+    username: root
+    password: rzq0825
+    cachePrepStmts: true
+    prepStmtsSize: 250
+    prepStmtsCacheSqlLimit: 2048
+    userServerPrepStmts: true
+
+# SPRING PROFILES
+spring:       
+    # HTTP ENCODING
+    http:
+        encoding.charset: UTF-8
+        encoding.enable: true
+        encoding.force: true
+
+# MyBatis
+# 注意用*Mapper区分目录下面的不同xml
+mybatis:
+    typeAliasesPackage: com.rzq.gpms.api.**.domain
+    mapperLocations: classpath:/com/rzq/gpms/api/**/dao/*Mapper.xml
+    configLocation: classpath:/mybatis-config.xml
+
+# LOGGING
+logging:
+    level:
+       com.ibatis:DEBUG

@@ -1,0 +1,36 @@
+#north {
+	height: 70px;
+}
+
+#west {
+	width: 180px;
+}
+
+#center {
+	
+}
+
+#logo {
+	width: 240px;
+	padding-left: 20px;
+	padding-top: 10px;
+	font-family: 微软雅黑;
+	font-size: 35px;
+	float: left;
+}
+
+#banner {
+	width: 540px;
+	float: right;
+	text-align: right;
+	padding-top: 50px;
+}
+
+#userAlias {
+	color: #0000FF;
+}
+
+#exit {
+	cursor: pointer;
+	padding-right: 10px;
+}
