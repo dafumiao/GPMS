@@ -77,7 +77,7 @@
 		</javaClientGenerator>
 
 		<!-- 配置表信息 -->
-		<table schema="btms" tableName="man_file" domainObjectName="File" />
+		<table schema="btms" tableName="sys_tree" domainObjectName="Tree" />
 
 	</context>
 </generatorConfiguration>  

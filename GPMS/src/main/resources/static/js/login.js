@@ -4,14 +4,14 @@ $(function() {
 });
 
 function login() {
-	if ($("#username").val() == "") {
-		$("#msg").text("请输入用户名");
-		$("#username").focus();
+	if ($("#number").val() == "") {
+		$("#msg").text("请输入学号");
+		$("#number").focus();
 		return false;
 	}
-	if (!cheStr($("#username").val())) {
+	if (!cheStr($("#number").val())) {
 		$("#msg").text("用户名中有非法字符");
-		$("#username").focus();
+		$("#number").focus();
 		return false;
 	}
 	if ($("#password").val() == "") {
@@ -21,18 +21,19 @@ function login() {
 	}
 	$.ajax({
 		type : "POST",
-		url : "admin/user/login.jsp",
+		url : "userLogin",
 		data : {
-			username : $("#username").val(),
+			number : $("#number").val(),
 			password : $("#password").val()
 		},
 		dataType : "text",
 		success : function(data) {
-			if ($.trim(data) == "ok") {
-				window.location.href = "index.html";
+			alert(data);
+			if (data == "ok") {
+				$("#msg").text("成功登录！");
+				window.location.href="index.html";
 			} else {
-				$("#msg").text("用户名或密码错误，请重新输入！");
-				reset();
+				$("#msg").text("学号或密码错误，请重新输入！");
 			}
 		}
 	});

@@ -19,7 +19,7 @@ public class Test {
 
 	@org.junit.Test
 	public void test1() {
-		System.out.println(userService.findUserById(3));
+		System.out.println(userService.findUserByNumber(1));
 
 	}
 }

@@ -5,20 +5,20 @@ function toUrl() {
 $(function() {
 	$.ajax({
 		type : "Get",
-		url : "admin/user/alias.jsp",
+		url : "userName",
 		dataType : "text",
 		success : function(data) {
 			if ($.trim(data) == "error") {
 				alert('当前用户已过期，请重新登录!');
 				window.location.href = 'login.html';
 			} else {
-				$("#userAlias").text($.trim(data));
+				$("#userName").text($.trim(data));
 			}
 		}
 	});
 
 	$('#tree').tree({
-		url : 'admin/tree/get.jsp',
+		url : 'getTree',
 		onClick : function(node) {
 			if (node.attributes.url != "") {
 				addTab(node.text, node.attributes.url);
@@ -30,7 +30,7 @@ $(function() {
 	$("#exit").on("click", function() {
 		$.ajax({
 			type : "Get",
-			url : "admin/user/exit.jsp",
+			url : "exit",
 			dataType : "text",
 			success : function(data) {
 				window.location.href = 'login.html';
