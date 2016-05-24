@@ -77,7 +77,7 @@
 		</javaClientGenerator>
 
 		<!-- 配置表信息 -->
-		<table schema="btms" tableName="sys_tree" domainObjectName="Tree" />
+		<table schema="btms" tableName="sys_role_tree" domainObjectName="RoleTree" />
 
 	</context>
 </generatorConfiguration>  

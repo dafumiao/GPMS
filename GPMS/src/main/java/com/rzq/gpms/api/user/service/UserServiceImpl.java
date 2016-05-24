@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import com.rzq.gpms.api.role.domain.Role;
 import com.rzq.gpms.api.user.dao.UserMapper;
 import com.rzq.gpms.api.user.domain.User;
 import com.rzq.gpms.api.user.domain.UserCriteria;
@@ -43,5 +44,11 @@ public class UserServiceImpl implements UserService {
 		userCriteria.or().andNumberEqualTo(number);
 		List<User> userList = userDao.selectByExample(userCriteria);
 		return userList.get(0);
+	}
+
+	@Override
+	public List<Role> getUserRole(User user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
