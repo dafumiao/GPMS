@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>毕业设计过程管理系统</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="css/common.css" />
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+<link rel="stylesheet" type="text/css"
+	href="css/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/icon.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</head>
+<body class="easyui-layout">
+	<div data-options="region:'north', border:false" id="north">
+		<div id="logo">毕业设计过程管理系统</div>
+		<div id="banner">
+			欢迎您:<span id="userName"></span> <span id="exit">[退出]</span>
+		</div>
+	</div>
+	<div data-options="region:'west', split:true, title:'系统菜单'" id="west">
+		<ul id="tree" class="easyui-tree"></ul>
+	</div>
+	<div data-options="region:'center'" id="center" class="easyui-tabs">
+		<div title="首页" data-options="region:'east'" id="east"></div>
+	</div>
+	</div>
+</body>
+</html>
