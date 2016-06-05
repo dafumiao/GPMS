@@ -24,8 +24,50 @@
 		<ul id="tree" class="easyui-tree"></ul>
 	</div>
 	<div data-options="region:'center'" id="center" class="easyui-tabs">
-		<div title="首页" data-options="region:'east'" id="east"></div>
+		<div title="首页" data-options="region:'east'" id="east">
+			<table title="联系人列表" id="contactsList" class="easyui-datagrid"
+				style="width:100%; height:auto">
+				<thead>
+					<tr>
+						<th data-options="field:'contacts', sortable:true, width:100">联系人</th>
+						<th data-options="field:'name', sortable:true, width:100">课题名称</th>
+					</tr>
+				</thead>
+			</table>
+			<div id="toolbar">
+				<a href="#" class="easyui-linkbutton" iconCls="icon-download"
+					plain="true" onclick="sendMessage()">发送消息</a>
+			</div>
+			<table title="消息列表" id="messagesList" class="easyui-datagrid"
+				style="width:100%; height:auto">
+				<thead>
+					<tr>
+						<th data-options="field:'sender', sortable:true, width:100">来自</th>
+						<th data-options="field:'content', sortable:true, width:100">内容</th>
+						<th data-options="field:'currentdate', sortable:true, width:100">日期</th>
+					</tr>
+				</thead>
+			</table>
+			<div id="mtoolbar">
+				<a href="#" class="easyui-linkbutton" iconCls="icon-download"
+					plain="true" onclick="deleteMessage()">删除消息</a>
+			</div>
+		</div>
 	</div>
+	<div id="messageDlg" class="easyui-dialog"
+		style="width:460px; height:auto; padding:10px 20px" closed="true"
+		buttons="#dlg-buttons">
+		<form id="regFm" method="post">
+			<div class="fitem">
+				<label>消息内容：</label> <input name="content" id="content"
+					class="easyui-textbox" data-options="multiline:true"
+					style="width:300px;height:100px">
+			</div>
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-ok"
+			onclick="saveMessage()">发送</a>
 	</div>
 </body>
 </html>

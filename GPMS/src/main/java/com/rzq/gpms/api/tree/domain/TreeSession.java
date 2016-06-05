@@ -10,6 +10,10 @@ public class TreeSession {
 	private TreeSessionAttributes attributes;
 	private List<TreeSession> children;
 
+	public TreeSession() {
+		super();
+	}
+
 	public boolean isChecked() {
 		return checked;
 	}

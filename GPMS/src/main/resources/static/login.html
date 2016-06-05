@@ -7,11 +7,13 @@
 <link rel="stylesheet" type="text/css" href="css/login.css" />
 <link rel="stylesheet" type="text/css"
 	href="css/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="css/list.css" />
 <link rel="stylesheet" type="text/css" href="css/themes/icon.css" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/register.js"></script>
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'north', border:false" id="north">
@@ -22,31 +24,113 @@
 	<div data-options="region:'east'" id="center">
 		<div style="margin:0px;"></div>
 		<div style="padding:10px 10px 20px 200px">
-			<form id="loginform" class="easyui-form" method="post"
-				data-options="novalidate:true">
-				<table cellpadding="5">
-					<tr id="info" style="height:30px">
-						<td colspan="2"><div id="msg"></div></td>
-					</tr>
-					<tr>
-						<td>学号:</td>
-						<td><input id="number" class="easyui-textbox" type="text"
-							name="number" data-options="required:true"></input></td>
-					</tr>
-					<tr>
-						<td>密码:</td>
-						<td><input id="password" class="easyui-textbox"
-							type="password" name="password"
-							data-options="required:true,validType:'password'"></input></td>
-					</tr>
-					<tr style="height:30px">
-						<td colspan="2" style="text-align:center"><input
-							type="submit" id="subbtn" value="登陆" width="40" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-							type="reset" id="resbtn" value="取消" width="40" /></td>
-					</tr>
-				</table>
-			</form>
+
+			<div style="padding:10px 60px 20px 60px">
+				<form id="loginform" class="easyui-form" method="post"
+					data-options="novalidate:true">
+					<table cellpadding="5">
+						<tr id="info" style="height:30px">
+							<td colspan="2"><div id="msg"></div></td>
+						</tr>
+						<tr>
+							<td>学号:</td>
+							<td><input id="number" class="easyui-textbox" type="text"
+								name="number" data-options="required:true"></input></td>
+						</tr>
+						<tr>
+							<td>密码:</td>
+							<td><input id="password" class="easyui-textbox"
+								type="password" name="password"
+								data-options="required:true,validType:'password'"></input></td>
+						</tr>
+						<tr>
+							<td>角色：</td>
+							<td><select name="roleName" id="roleName"
+								class="easyui-checkbox">
+									<option value="teacher">教师</option>
+									<option value="student">学生</option>
+							</select></td>
+						</tr>
+						<tr style="height:30px">
+							<td colspan="2" style="text-align:center"><input
+								type="submit" id="subbtn" value="登录" width="40" />&nbsp;<input
+								type="reset" id="resbtn" value="取消" width="40" />&nbsp;</td>
+						</tr>
+					</table>
+				</form>
+				<div>
+					<a href="#" class="easyui-linkbutton" iconCls="icon-add"
+						plain="true" onclick="newUser()">注册新用户</a>
+				</div>
+			</div>
+
 		</div>
+	</div>
+	<!--注册用户-->
+	<div id="dlg" class="easyui-dialog"
+		style="width:460px; height:auto; padding:10px 20px" closed="true"
+		buttons="#dlg-buttons">
+		<div class="ftitle">填写用户信息</div>
+		<div id="regMsg"></div>
+		<form id="regFm" method="post">
+			<div id="regMsg"></div>
+			<div class="fitem">
+				<label>用户角色：</label> <select name="regRoleid" id="regRoleid"
+					class="easyui-checkbox">
+					<option value="1">教师</option>
+					<option value="2">学生</option>
+				</select>
+			</div>
+			<div class="fitem">
+				<label>学号/职工号：</label> <input name="regNumber" id="regNumber"
+					class="easyui-validatebox" required="true" />
+			</div>
+			<div class="fitem">
+				<label>姓名：</label> <input name="regName" id="regName"
+					class="easyui-validatebox" />
+			</div>
+			<div class="fitem">
+				<label>输入密码：</label> <input type="password" name="regPassword"
+					id="regPassword" class="easyui-validatebox" required="true" />
+			</div>
+			<div class="fitem">
+				<label>确认密码：</label> <input type="password" name="regcPassword"
+					id="regcPassword" class="easyui-validatebox" required="true" />
+			</div>
+			<div class="fitem">
+				<label>生日：</label> <input name="regBirthday" id="regBirthday"
+					class="easyui-datebox" />
+			</div>
+			<div class="fitem">
+				<label>性别：</label> <select name="regSex" id="regSex"
+					class="easyui-checkbox">
+					<option value="男">男</option>
+					<option value="女">女</option>
+				</select>
+			</div>
+			<div class="fitem">
+				<label>院系：</label> <select name="regDepartment" id="regDepartment"
+					class="easyui-combobox" required="true">
+					<option value="电信">电信&nbsp;&nbsp;</option>
+					<option value="机械">机械&nbsp;&nbsp;</option>
+					<option value="人文">人文&nbsp;&nbsp;</option>
+				</select>
+			</div>
+			<div class="fitem">
+				<label>tel：</label> <input name="regTel" id="regTel"
+					class="easyui-validatebox" />
+			</div>
+			<div class="fitem">
+				<label>email：</label> <input name="regEmail" id="regEmail"
+					class="easyui-validatebox" validType="email" />
+			</div>
+
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-ok"
+			onclick="saveUser()">提交</a> <a href="#" class="easyui-linkbutton"
+			iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a>
 	</div>
 	<div data-options="region:'south',border:false" id="south">版权所有
 		&copy; rzq 2016-2016</div>

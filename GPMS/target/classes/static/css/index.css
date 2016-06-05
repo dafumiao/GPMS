@@ -1,5 +1,6 @@
 #north {
-	height: 70px;
+	height: 110px;
+	background-color: silver;
 }
 
 #west {
@@ -11,23 +12,25 @@
 }
 
 #logo {
-	width: 240px;
+	width: 500px;
 	padding-left: 20px;
-	padding-top: 10px;
-	font-family: 微软雅黑;
-	font-size: 35px;
+	padding-top: 20px;
+	font-family: 幼圆;
+	font-size: 50px;
 	float: left;
+	color: navy;
 }
 
-#banner {
+#banner {	
+	color: navy;
 	width: 540px;
 	float: right;
 	text-align: right;
 	padding-top: 50px;
 }
 
-#userAlias {
-	color: #0000FF;
+#userName {
+	color: #ff0000;
 }
 
 #exit {

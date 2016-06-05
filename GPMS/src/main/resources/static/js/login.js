@@ -14,6 +14,11 @@ function login() {
 		$("#number").focus();
 		return false;
 	}
+	if ($("#rolename").val() == "") {
+		$("#msg").text("请输入角色");
+		$("#rolename").focus();
+		return false;
+	}
 	if ($("#password").val() == "") {
 		$("#msg").text("请输入密码");
 		$("#password").focus();
@@ -24,14 +29,14 @@ function login() {
 		url : "userLogin",
 		data : {
 			number : $("#number").val(),
+			roleName : $("#roleName").val(),
 			password : $("#password").val()
 		},
 		dataType : "text",
 		success : function(data) {
-			alert(data);
 			if (data == "ok") {
 				$("#msg").text("成功登录！");
-				window.location.href="index.html";
+				window.location.href = "index.html";
 			} else {
 				$("#msg").text("学号或密码错误，请重新输入！");
 			}

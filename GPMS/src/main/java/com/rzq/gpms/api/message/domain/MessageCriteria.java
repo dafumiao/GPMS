@@ -1,6 +1,7 @@
 package com.rzq.gpms.api.message.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MessageCriteria {
@@ -384,63 +385,63 @@ public class MessageCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andResponseridIsNull() {
-            addCriterion("responserid is null");
+        public Criteria andSenderidIsNull() {
+            addCriterion("senderid is null");
             return (Criteria) this;
         }
 
-        public Criteria andResponseridIsNotNull() {
-            addCriterion("responserid is not null");
+        public Criteria andSenderidIsNotNull() {
+            addCriterion("senderid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andResponseridEqualTo(Integer value) {
-            addCriterion("responserid =", value, "responserid");
+        public Criteria andSenderidEqualTo(Integer value) {
+            addCriterion("senderid =", value, "senderid");
             return (Criteria) this;
         }
 
-        public Criteria andResponseridNotEqualTo(Integer value) {
-            addCriterion("responserid <>", value, "responserid");
+        public Criteria andSenderidNotEqualTo(Integer value) {
+            addCriterion("senderid <>", value, "senderid");
             return (Criteria) this;
         }
 
-        public Criteria andResponseridGreaterThan(Integer value) {
-            addCriterion("responserid >", value, "responserid");
+        public Criteria andSenderidGreaterThan(Integer value) {
+            addCriterion("senderid >", value, "senderid");
             return (Criteria) this;
         }
 
-        public Criteria andResponseridGreaterThanOrEqualTo(Integer value) {
-            addCriterion("responserid >=", value, "responserid");
+        public Criteria andSenderidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("senderid >=", value, "senderid");
             return (Criteria) this;
         }
 
-        public Criteria andResponseridLessThan(Integer value) {
-            addCriterion("responserid <", value, "responserid");
+        public Criteria andSenderidLessThan(Integer value) {
+            addCriterion("senderid <", value, "senderid");
             return (Criteria) this;
         }
 
-        public Criteria andResponseridLessThanOrEqualTo(Integer value) {
-            addCriterion("responserid <=", value, "responserid");
+        public Criteria andSenderidLessThanOrEqualTo(Integer value) {
+            addCriterion("senderid <=", value, "senderid");
             return (Criteria) this;
         }
 
-        public Criteria andResponseridIn(List<Integer> values) {
-            addCriterion("responserid in", values, "responserid");
+        public Criteria andSenderidIn(List<Integer> values) {
+            addCriterion("senderid in", values, "senderid");
             return (Criteria) this;
         }
 
-        public Criteria andResponseridNotIn(List<Integer> values) {
-            addCriterion("responserid not in", values, "responserid");
+        public Criteria andSenderidNotIn(List<Integer> values) {
+            addCriterion("senderid not in", values, "senderid");
             return (Criteria) this;
         }
 
-        public Criteria andResponseridBetween(Integer value1, Integer value2) {
-            addCriterion("responserid between", value1, value2, "responserid");
+        public Criteria andSenderidBetween(Integer value1, Integer value2) {
+            addCriterion("senderid between", value1, value2, "senderid");
             return (Criteria) this;
         }
 
-        public Criteria andResponseridNotBetween(Integer value1, Integer value2) {
-            addCriterion("responserid not between", value1, value2, "responserid");
+        public Criteria andSenderidNotBetween(Integer value1, Integer value2) {
+            addCriterion("senderid not between", value1, value2, "senderid");
             return (Criteria) this;
         }
 
@@ -511,6 +512,66 @@ public class MessageCriteria {
 
         public Criteria andContentNotBetween(String value1, String value2) {
             addCriterion("content not between", value1, value2, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentdateIsNull() {
+            addCriterion("currentdate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentdateIsNotNull() {
+            addCriterion("currentdate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentdateEqualTo(Date value) {
+            addCriterion("currentdate =", value, "currentdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentdateNotEqualTo(Date value) {
+            addCriterion("currentdate <>", value, "currentdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentdateGreaterThan(Date value) {
+            addCriterion("currentdate >", value, "currentdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentdateGreaterThanOrEqualTo(Date value) {
+            addCriterion("currentdate >=", value, "currentdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentdateLessThan(Date value) {
+            addCriterion("currentdate <", value, "currentdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentdateLessThanOrEqualTo(Date value) {
+            addCriterion("currentdate <=", value, "currentdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentdateIn(List<Date> values) {
+            addCriterion("currentdate in", values, "currentdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentdateNotIn(List<Date> values) {
+            addCriterion("currentdate not in", values, "currentdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentdateBetween(Date value1, Date value2) {
+            addCriterion("currentdate between", value1, value2, "currentdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentdateNotBetween(Date value1, Date value2) {
+            addCriterion("currentdate not between", value1, value2, "currentdate");
             return (Criteria) this;
         }
 

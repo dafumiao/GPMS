@@ -3,6 +3,7 @@ package com.rzq.gpms.api.role.domain;
 import java.io.Serializable;
 
 public class Role implements Serializable {
+
 	private Integer id;
 
 	private String name;

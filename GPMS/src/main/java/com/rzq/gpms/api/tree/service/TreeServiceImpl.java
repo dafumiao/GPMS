@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rzq.gpms.api.role.domain.Role;
-import com.rzq.gpms.api.role.service.RoleService;
 import com.rzq.gpms.api.role.service.RoleServiceImpl;
 import com.rzq.gpms.api.tree.dao.TreeMapper;
 import com.rzq.gpms.api.tree.domain.Tree;
@@ -22,15 +21,15 @@ import com.rzq.gpms.api.tree.domain.TreeCriteria;
 import com.rzq.gpms.api.tree.domain.TreeSession;
 import com.rzq.gpms.api.tree.domain.TreeSessionAttributes;
 import com.rzq.gpms.api.user.domain.User;
-import com.rzq.gpms.api.user.service.UserService;
-import com.rzq.gpms.api.user.service.UserServiceImpl;
 
 @Service
 @Transactional
-public class TreeServiceImpl implements TreeService {
+public class TreeServiceImpl {
 
 	@Autowired
 	private TreeMapper treeDao;
+	@Autowired
+	private RoleServiceImpl roleService;
 
 	public TreeSession getTreeSession(User user) throws ClassNotFoundException,
 			SQLException, IOException {
@@ -40,8 +39,8 @@ public class TreeServiceImpl implements TreeService {
 		// 根节点
 		Tree rootTree = new Tree();
 		rootTree.setId(0);
-		if (user.getId() == 1) {
-			Tree tree = this.getTree(rootTree); // 返回所有节点，管理员
+		if (user.getRoleid() == 0) {
+			Tree tree = this.getTree(rootTree); // 返回所有节点
 			treeSession = this.getTreeSession(tree, treeSession, 1); // 生成前台节点
 		} else {
 			Map<Integer, List<Tree>> mMap = this.getTree(rootTree, user); // 普通用户，返回权限集合
@@ -53,44 +52,51 @@ public class TreeServiceImpl implements TreeService {
 	public Tree getTree(Tree tree) {
 		tree.setChildren(new ArrayList<Tree>());
 		TreeCriteria treeCriteria = new TreeCriteria();
-		treeCriteria.or().andPidEqualTo(tree.getId())
-				.andEnableEqualTo(tree.getEnable());
+		treeCriteria.or().andPidEqualTo(tree.getId()).andEnableEqualTo(1);
 		treeCriteria.setOrderByClause("orderid");
 		List<Tree> treeList = treeDao.selectByExample(treeCriteria);
-		Tree ctree = treeList.get(0);
-		tree.getChildren().add(ctree);
-		if (!Boolean.parseBoolean(ctree.getIsleaf())) {
-			getTree(ctree);
+		if (treeList != null) {
+			for (int i = 0; i < treeList.size(); i++) {
+				Tree ctree = treeList.get(i);
+				if (!Boolean.parseBoolean(ctree.getIsleaf())) {
+					getTree(ctree);
+				}
+				tree.getChildren().add(ctree);
+			}
+		} else {
+			System.out.println("节点为空");
 		}
 		return tree;
 	}
 
 	public Map<Integer, List<Tree>> getTree(Tree tree, User user) {
-		UserService userService = new UserServiceImpl();
-		RoleService roleService = new RoleServiceImpl();
+
 		Set<Integer> kSet = new HashSet<Integer>();
 		Map<Integer, List<Tree>> mMap = new HashMap<Integer, List<Tree>>();
 
-		List<Role> rlist = userService.getUserRole(user);
-		for (int i = 0; i < rlist.size(); i++) {
-			List<Tree> tlist = roleService.getRoleTree(rlist.get(i));
-			for (int j = 0; j < tlist.size(); j++) {
-				Tree ctree = tlist.get(j);
-				if (!kSet.contains(ctree.getId())) {
-					kSet.add(ctree.getId());
-					if (!mMap.containsKey(ctree.getPid())) {
-						List<Tree> vlist = new ArrayList<Tree>();
-						vlist.add(ctree);
-						mMap.put(ctree.getPid(), vlist);
-					} else {
-						List<Tree> vlist = (List<Tree>) mMap
-								.get(ctree.getPid());
-						vlist.add(ctree);
+		List<Role> rlist = roleService.getUserRole(user);
+		if (rlist != null) {
+			for (int i = 0; i < rlist.size(); i++) {
+				List<Tree> tlist = roleService.getRoleTree(rlist.get(i));
+				for (int j = 0; j < tlist.size(); j++) {
+					Tree ctree = tlist.get(j);
+					if (!kSet.contains(ctree.getId())) {
+						kSet.add(ctree.getId());
+						if (!mMap.containsKey(ctree.getPid())) {
+							List<Tree> vlist = new ArrayList<Tree>();
+							vlist.add(ctree);
+							mMap.put(ctree.getPid(), vlist);
+						} else {
+							List<Tree> vlist = (List<Tree>) mMap.get(ctree
+									.getPid());
+							vlist.add(ctree);
+						}
 					}
 				}
 			}
+		} else {
+			System.out.println("节点为空");
 		}
-
 		return mMap;
 	}
 
@@ -119,7 +125,6 @@ public class TreeServiceImpl implements TreeService {
 				level--;
 			}
 			treeSession.getChildren().add(cTreeSession);
-
 		}
 		return treeSession;
 	}

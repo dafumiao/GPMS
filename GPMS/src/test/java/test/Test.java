@@ -9,9 +9,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.rzq.gpms.Application;
-import com.rzq.gpms.api.role.domain.Role;
-import com.rzq.gpms.api.role.service.RoleService;
-import com.rzq.gpms.api.tree.domain.Tree;
+import com.rzq.gpms.api.role.dao.RoleMapper;
+import com.rzq.gpms.api.user.dao.UserMapper;
+import com.rzq.gpms.api.userFile.dao.UserFileMapper;
+import com.rzq.gpms.api.userFile.domain.UserFile;
+import com.rzq.gpms.api.userFile.domain.UserFileCriteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -19,15 +21,17 @@ import com.rzq.gpms.api.tree.domain.Tree;
 public class Test {
 
 	@Autowired
-	private RoleService service;
+	private RoleMapper dao;
+	@Autowired
+	private UserMapper userDao;
+	@Autowired
+	private UserFileMapper fileDao;
 
 	@org.junit.Test
 	public void test1() {
 
-		Role role = new Role();
-		role.setId(1);
-		List<Tree> list = service.getRoleTree(role);
-		System.out.println(list.get(0));
-		System.out.println(list.get(1));
+		UserFileCriteria example = new UserFileCriteria();
+		List<UserFile> files = fileDao.selectByExample(example);
+		System.out.println(files);
 	}
 }

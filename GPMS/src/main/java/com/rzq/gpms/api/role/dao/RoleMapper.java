@@ -39,4 +39,6 @@ public interface RoleMapper {
 	int updateByPrimaryKey(Role record);
 
 	List<Tree> getRoleTree(int roleid);
+
+	List<Role> getUserRole(Integer userid);
 }

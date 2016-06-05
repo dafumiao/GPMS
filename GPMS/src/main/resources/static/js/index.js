@@ -3,6 +3,32 @@ function toUrl() {
 }
 
 $(function() {
+	$('#contactsList').datagrid({
+		url : 'contactsList',
+		rownumbers : true,
+		singleSelect : true,
+		toolbar : '#toolbar',
+		pagination : true,
+		remoteSort : false,
+		fitColumns : true
+	});
+	$('#contactsList').datagrid('load', {});
+});
+
+$(function() {
+	$('#messagesList').datagrid({
+		url : 'messagesList',
+		rownumbers : true,
+		singleSelect : true,
+		toolbar : '#mtoolbar',
+		pagination : true,
+		remoteSort : false,
+		fitColumns : true
+	});
+	$('#messagesList').datagrid('load', {});
+});
+
+$(function() {
 	$.ajax({
 		type : "Get",
 		url : "userName",
@@ -33,7 +59,7 @@ $(function() {
 			url : "exit",
 			dataType : "text",
 			success : function(data) {
-				window.location.href = 'login.html';
+				window.location.href = '../login.html';
 			}
 		});
 	});
@@ -56,4 +82,57 @@ function addTab(title, url) {
 			closable : true
 		});
 	}
+}
+
+function sendMessage() {
+	$('#messageDlg').dialog('open').dialog('setTitle', '发送消息');
+	$('regFm').form('clear');
+}
+
+function saveMessage() {
+	$.ajax({
+		type : "POST",
+		url : "sendMessage",
+		data : {
+			content : $("#content").val(),
+			receiverid : $('#contactsList').datagrid('getSelected').contactid
+		},
+		dataType : "text",
+		success : function(result) {
+			var result = eval('(' + result + ')');
+			if (result.success) {
+				$('#messageDlg').dialog('close');
+				$.messager.show({
+					title : '消息',
+					msg : '成功发送消息！'
+				});
+			} else {
+				$.messager.show({
+					title : '错误',
+					msg : result.msg
+				});
+			}
+		}
+	});
+}
+
+function deleteMessage() {
+	var row = $('#messagesList').datagrid('getSelected');
+	if (row) {
+		$.messager.confirm('确认删除', '您确认要删除吗?', function(r) {
+			if (r) {
+				$.post('deleteMessage', {
+					id : row.id
+				}, function(result) {
+					$('#messagesList').datagrid('reload');
+					$.messager.show({
+						title : '消息',
+						msg : '成功删除消息！'
+					});
+				}, 'json');
+			}
+		});
+
+	}
+
 }
