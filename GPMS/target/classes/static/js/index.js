@@ -16,8 +16,8 @@ $(function() {
 });
 
 $(function() {
-	$('#messagesList').datagrid({
-		url : 'messagesList',
+	$('#messagesReceiveList').datagrid({
+		url : 'messagesReceiveList',
 		rownumbers : true,
 		singleSelect : true,
 		toolbar : '#mtoolbar',
@@ -25,7 +25,19 @@ $(function() {
 		remoteSort : false,
 		fitColumns : true
 	});
-	$('#messagesList').datagrid('load', {});
+	$('#messagesReceiveList').datagrid('load', {});
+});
+
+$(function() {
+	$('#messagesSendList').datagrid({
+		url : 'messagesSendList',
+		rownumbers : true,
+		singleSelect : true,
+		pagination : true,
+		remoteSort : false,
+		fitColumns : true
+	});
+	$('#messagesSendList').datagrid('load', {});
 });
 
 $(function() {
@@ -102,6 +114,7 @@ function saveMessage() {
 			var result = eval('(' + result + ')');
 			if (result.success) {
 				$('#messageDlg').dialog('close');
+				$('#messagesSendList').datagrid('reload');
 				$.messager.show({
 					title : '消息',
 					msg : '成功发送消息！'
@@ -117,14 +130,14 @@ function saveMessage() {
 }
 
 function deleteMessage() {
-	var row = $('#messagesList').datagrid('getSelected');
+	var row = $('#messagesReceiveList').datagrid('getSelected');
 	if (row) {
 		$.messager.confirm('确认删除', '您确认要删除吗?', function(r) {
 			if (r) {
 				$.post('deleteMessage', {
 					id : row.id
 				}, function(result) {
-					$('#messagesList').datagrid('reload');
+					$('#messagesReceiveList').datagrid('reload');
 					$.messager.show({
 						title : '消息',
 						msg : '成功删除消息！'

@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css"
 	href="css/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="css/themes/icon.css" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
@@ -35,23 +35,33 @@
 				</thead>
 			</table>
 			<div id="toolbar">
-				<a href="#" class="easyui-linkbutton" iconCls="icon-download"
+				<a href="#" class="easyui-linkbutton" iconCls="icon-redo"
 					plain="true" onclick="sendMessage()">发送消息</a>
 			</div>
-			<table title="消息列表" id="messagesList" class="easyui-datagrid"
+			<table title="收到消息" id="messagesReceiveList" class="easyui-datagrid"
 				style="width:100%; height:auto">
 				<thead>
 					<tr>
-						<th data-options="field:'sender', sortable:true, width:100">来自</th>
+						<th data-options="field:'sender', sortable:true, width:100">发信人</th>
 						<th data-options="field:'content', sortable:true, width:100">内容</th>
 						<th data-options="field:'currentdate', sortable:true, width:100">日期</th>
 					</tr>
 				</thead>
 			</table>
 			<div id="mtoolbar">
-				<a href="#" class="easyui-linkbutton" iconCls="icon-download"
+				<a href="#" class="easyui-linkbutton" iconCls="icon-remove"
 					plain="true" onclick="deleteMessage()">删除消息</a>
 			</div>
+			<table title="已发送消息" id="messagesSendList" class="easyui-datagrid"
+				style="width:100%; height:auto">
+				<thead>
+					<tr>
+						<th data-options="field:'receiver', sortable:true, width:100">收信人</th>
+						<th data-options="field:'content', sortable:true, width:100">内容</th>
+						<th data-options="field:'currentdate', sortable:true, width:100">日期</th>
+					</tr>
+				</thead>
+			</table>
 		</div>
 	</div>
 	<div id="messageDlg" class="easyui-dialog"

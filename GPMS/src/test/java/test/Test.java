@@ -1,7 +1,5 @@
 package test;
 
-import java.util.List;
-
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -12,8 +10,6 @@ import com.rzq.gpms.Application;
 import com.rzq.gpms.api.role.dao.RoleMapper;
 import com.rzq.gpms.api.user.dao.UserMapper;
 import com.rzq.gpms.api.userFile.dao.UserFileMapper;
-import com.rzq.gpms.api.userFile.domain.UserFile;
-import com.rzq.gpms.api.userFile.domain.UserFileCriteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -29,9 +25,5 @@ public class Test {
 
 	@org.junit.Test
 	public void test1() {
-
-		UserFileCriteria example = new UserFileCriteria();
-		List<UserFile> files = fileDao.selectByExample(example);
-		System.out.println(files);
 	}
 }

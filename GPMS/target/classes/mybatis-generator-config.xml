@@ -77,7 +77,7 @@
 		</javaClientGenerator>
 
 		<!-- 配置表信息 -->
-		<table schema="btms" tableName="man_message" domainObjectName="Message" />
+		<table schema="btms" tableName="man_calendar" domainObjectName="Calendar" />
 
 	</context>
 </generatorConfiguration>  

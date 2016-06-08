@@ -23,6 +23,16 @@ public class Theme implements Serializable {
 
 	private String contacts;
 
+	private String showContent;
+
+	public String getShowContent() {
+		return showContent;
+	}
+
+	public void setShowContent(String showContent) {
+		this.showContent = showContent;
+	}
+
 	public int getContactid() {
 		return contactid;
 	}
