@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="css/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="css/themes/icon.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/locale/easyui-lang-zh_CN.js"></script>
+<script src='js/teacherSchedule.js'></script>
+</head>
+<body style="text-align: center; margin:0px auto;">
+	<table title="联系人列表" id="contactsList" class="easyui-datagrid"
+		style="width:100%; height:auto">
+		<thead>
+			<tr>
+				<th data-options="field:'student', sortable:true, width:100">学生</th>
+				<th data-options="field:'name', sortable:true, width:100">课题名称</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search"
+			plain="true" onclick="getStudentCalendar()">查看日程</a>
+	</div>
+</body>
+<div id="calendar"></div>
+</html>

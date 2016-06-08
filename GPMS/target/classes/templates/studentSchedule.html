@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="css/common.css" />
+<link rel="stylesheet" type="text/css" href="css/login.css" />
+<link rel="stylesheet" type="text/css"
+	href="css/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="css/list.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/icon.css" />
+<link href='fullcalendar/css/fullcalendar.css' rel='stylesheet' />
+<script src='fullcalendar/js/jquery-1.9.1.min.js'></script>
+<script src='fullcalendar/js/jquery-ui-1.10.2.custom.min.js'></script>
+<script src='fullcalendar/js/fullcalendar.min.js'></script>
+<script src="js/jquery.easyui.min.js"></script>
+<script src="js/locale/easyui-lang-zh_CN.js"></script>
+<script src='js/studentSchedule.js'></script>
+</head>
+<body>
+	<div id="calendar"></div>
+	<div id="dlg" class="easyui-dialog"
+		style="width:460px; height:auto; padding:10px 20px" closed="true"
+		buttons="#dlg-buttons">
+		<form id="fm" method="post" style="text-align: center;">
+			<input readonly="readonly" name="id" id="id"
+				class="easyui-validatebox" type="hidden" />
+			<div class="fitem">
+				<label>日程内容：</label> <input name="title" id="title"
+					class="easyui-textbox" data-options="multiline:true"
+					style="width:300px;height:100px" />
+			</div>
+			<div class="fitem">
+				<label>开始日期：</label> <input name="start" id="start"
+					class="easyui-datebox" />
+			</div>
+			<div class="fitem">
+				<label>截止日期：</label> <input name="end" id="end"
+					class="easyui-datebox" />
+			</div>
+			<div class="fitem">
+				<label>签到/请假：</label> <select name="status" id="status"
+					class="easyui-combobox">
+					<option value="">&nbsp;&nbsp;&nbsp;</option>
+					<option value="签到待批准">签到&nbsp;&nbsp;</option>
+					<option value="请假待批准">请假&nbsp;&nbsp;</option>
+				</select>
+			</div>
+		</form>
+		<div id="dlg-buttons">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-add"
+				onclick="saveEvent()">上传日程</a>
+			<div id="msg"></div>
+		</div>
+	</div>
+</body>
+</html>

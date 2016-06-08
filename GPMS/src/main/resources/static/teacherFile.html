@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="css/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="css/themes/icon.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/fileList.js"></script>
+</head>
+
+
+<body style="text-align: center; margin:0px auto;">
+	<table id="fileList" class="easyui-datagrid" style="width:100%; height:auto">
+		<thead>
+			<tr>
+				<th data-options="field:'name', sortable:true, width:100">文件名</th>
+				<th data-options="field:'owner', sortable:true, width:100">所有者</th>
+				<th data-options="field:'currentdate', sortable:true, width:100">上传日期</th>
+			</tr>
+		</thead>
+	</table>
+
+	<div id="toolbar">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-download"
+			plain="true" onclick="fileDownload()">下载文件</a> <a href="#"
+			class="easyui-linkbutton" iconCls="icon-upload" plain="true"
+			onclick="fileUpload()">上传文件</a> <a href="#" class="easyui-linkbutton"
+			iconCls="icon-file" plain="true" onclick="delStudent()">我的文件</a>
+	</div>
+	<div id="dlg" class="easyui-dialog"
+		style="width:460px; height:auto; padding:10px 20px" closed="true"
+		buttons="#dlg-buttons">
+		<div style="text-align: center; margin:0px auto; width:360;">
+			<form method="POST" class="easyui-form" enctype="multipart/form-data"
+				action="/fileUpload">
+				<input type="file" name="file"><br> <br> <input
+					id="subbtn" type="submit" value="上传">
+			</form>
+		</div>
+	</div>
+	<script>
+		$(function() {
+			$("#subbtn").on("click", showMsg);
+		});
+		function showMsg() {
+			$.messager.show({
+				title : '信息',
+				msg : '文件成功上传！'
+			});
+			$('#dlg').dialog('close');
+			$('#fileList').datagrid({
+				url : 'fileList',
+				rownumbers : true,
+				singleSelect : true,
+				toolbar : '#toolbar',
+				pagination : true,
+				remoteSort : false,
+				fitColumns : true
+			});
+			$('#fileList').datagrid('load', {});
+		}
+	</script>
+</body>
+</html>
